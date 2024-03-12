@@ -6,10 +6,6 @@
       apt:
         update_cache: yes
 
-    - name: Upgrade packages
-      apt:
-        upgrade: yes
-
     - name: Install OpenJDK 8
       apt:
         name: openjdk-8-jdk

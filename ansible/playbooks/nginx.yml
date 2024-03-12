@@ -18,7 +18,7 @@
 
     - name: Configure Nginx for Favizone
       template:
-        src: templates/nginx-favizone.conf.j2
+        src: templates/nginx-favizone.conf
         dest: /etc/nginx/sites-available/app.favizone.com
 
     - name: Create symbolic link for Nginx site
@@ -28,7 +28,7 @@
 
     - name: Modify Nginx main configuration
       template:
-        src: templates/nginx-main.conf.j2
+        src: templates/nginx-main.conf
         dest: /etc/nginx/nginx.conf
 
     - name: Test Nginx configuration

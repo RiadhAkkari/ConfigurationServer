@@ -25,13 +25,13 @@ pipeline {
             }
         }
 
-        stage('Build and Deploy App') {
+        /*stage('Build and Deploy App') {
             steps {
                 script {
                     sh 'ansible-playbook -i ansible/inventory/production ansible/playbooks/deploy-app.yml'
                 }
             }
-        }
+        }*/
     }
 
 }

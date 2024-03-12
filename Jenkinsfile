@@ -8,19 +8,19 @@ pipeline {
             }
         }
 
-        stage('Install Nginx') {
-            steps {
-                script {
-                    sh 'ansible-playbook -i ansible/inventory/production ansible/playbooks/nginx.yml'
-                }
-            }
-        }
-
-
+       
         stage('Install Java and Grails') {
             steps {
                 script {
                     sh 'ansible-playbook -i ansible/inventory/production ansible/playbooks/install-java-grails.yml'
+                }
+            }
+        }
+
+        stage('Install Nginx') {
+            steps {
+                script {
+                    sh 'ansible-playbook -i ansible/inventory/production ansible/playbooks/nginx.yml'
                 }
             }
         }

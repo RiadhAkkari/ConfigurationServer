@@ -1,0 +1,40 @@
+---
+- hosts: your_nginx_servers
+  become: true
+  tasks:
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Allow Nginx through firewall
+      ufw:
+        rule: allow
+        name: 'Nginx HTTP'
+
+    - name: Configure Nginx for Favizone
+      template:
+        src: templates/nginx-favizone.conf.j2
+        dest: /etc/nginx/sites-available/app.favizone.com
+
+    - name: Create symbolic link for Nginx site
+      file:
+        src: /etc/nginx/sites-available/app.favizone.com
+        dest: /etc/nginx/sites-enabled/app.favizone.com
+
+    - name: Modify Nginx main configuration
+      template:
+        src: templates/nginx-main.conf.j2
+        dest: /etc/nginx/nginx.conf
+
+    - name: Test Nginx configuration
+      command: nginx -t
+
+    - name: Restart Nginx
+      systemd:
+        name: nginx
+        state: restarted

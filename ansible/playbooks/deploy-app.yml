@@ -1,0 +1,6 @@
+---
+- hosts: your_app_servers
+  become: true
+  tasks:
+    - name: Build and Deploy App
+      command: "/path/to/scripts/deploy.sh"

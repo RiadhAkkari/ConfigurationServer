@@ -18,7 +18,7 @@
 
     - name: Configure Nginx for Favizone
       template:
-        src: ansible/templates/nginx.conf
+        src: templates/nginx.conf
         dest: /etc/nginx/sites-available/app.favizone.com
 
     - name: Create symbolic link for Nginx site

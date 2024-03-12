@@ -12,7 +12,7 @@ pipeline {
         stage('Install Java and Grails') {
             steps {
                 script {
-                    sh 'ansible-playbook -i ansible/playbooks/install-java-grails.yml'
+                    sh 'ansible-playbook -i ansible/inventory/production ansible/playbooks/install-java-grails.yml'
                 }
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage('Install Nginx') {
             steps {
                 script {
-                    sh 'ansible-playbook -i ansible/playbooks/nginx.yml'
+                    sh 'ansible-playbook -i ansible/inventory/production ansible/playbooks/nginx.yml'
                 }
             }
         }

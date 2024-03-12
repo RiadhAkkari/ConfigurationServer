@@ -2,11 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Setup Environment') {
+        stage('Récupérer les fichiers Ansible') {
             steps {
-                script {
-                    // Set up your environment here if necessary
-                }
+                git branch: 'main', url: 'https://github.com/RiadhAkkari/ConfigurationServer.git'
             }
         }
 
@@ -18,13 +16,6 @@ pipeline {
             }
         }
 
-        stage('Configure Nginx') {
-            steps {
-                script {
-                    // Add any additional configuration steps if needed
-                }
-            }
-        }
 
         stage('Install Java and Grails') {
             steps {
@@ -43,9 +34,4 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Clean up or perform any necessary post-build tasks
-        }
-    }
 }

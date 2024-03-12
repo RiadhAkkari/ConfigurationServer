@@ -1,5 +1,5 @@
 ---
-- hosts: your_app_servers
+- hosts: localhost
   become: true
   tasks:
     - name: Build and Deploy App

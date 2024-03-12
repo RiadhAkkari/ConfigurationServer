@@ -1,5 +1,5 @@
 ---
-- hosts: your_java_grails_servers
+- hosts: localhost
   become: true
   tasks:
     - name: Update package list

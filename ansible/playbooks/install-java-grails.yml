@@ -20,10 +20,16 @@
         msg: "{{ sdkman_install_output.stdout_lines }}"
 
     - name: Source SDKMAN
-      shell: source "$HOME/.sdkman/bin/sdkman-init.sh"
+      shell: |
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+      environment:
+        HOME: "{{ ansible_env.HOME }}"
       when: sdkman_install_output.rc == 0
 
     - name: Install Grails 2.4.4
       command: "sdk install grails 2.4.4"
+      environment:
+        HOME: "{{ ansible_env.HOME }}"
       when: sdkman_install_output.rc == 0
+
 

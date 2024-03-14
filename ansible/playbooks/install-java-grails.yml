@@ -13,9 +13,17 @@
 
     - name: Install SDKMAN
       command: "curl -s https://get.sdkman.io | bash"
+      register: sdkman_install_output
+      ignore_errors: true
+
+    - debug:
+        msg: "{{ sdkman_install_output.stdout_lines }}"
 
     - name: Source SDKMAN
       shell: source "$HOME/.sdkman/bin/sdkman-init.sh"
+      when: sdkman_install_output.rc == 0
 
     - name: Install Grails 2.4.4
       command: "sdk install grails 2.4.4"
+      when: sdkman_install_output.rc == 0
+
